@@ -3,7 +3,10 @@
   "builds": [
     {
       "src": "api/wsgi.py",
-      "use": "@vercel/python"
+      "use": "@vercel/python",
+      "config": {
+        "maxLambdaSize": "50mb"
+      }
     }
   ],
   "routes": [
@@ -15,5 +18,15 @@
       "src": "/(.*)",
       "dest": "api/wsgi.py"
     }
-  ]
+  ],
+  "build": {
+    "env": {
+      "DJANGO_SETTINGS_MODULE": "api.settings",
+      "PYTHON_VERSION": "3.x"
+    },
+    "commands": [
+      "pip install -r requirements.txt",
+      "python manage.py collectstatic --noinput"
+    ]
+  }
 }
