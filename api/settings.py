@@ -12,10 +12,11 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 import os
 from pathlib import Path
+import logging
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR2 = Path(__file__).resolve().parent.parent
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = Path(__file__).resolve().parent.parent
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
@@ -83,7 +84,7 @@ WSGI_APPLICATION = 'api.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR2 / 'db.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -131,7 +132,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # STATIC_URL = './static/'
 # STATIC_ROOT = os.path.join(BASE_DIR, '/static/')
 
-STATIC_URL = BASE_DIR + "static/"
+STATIC_URL =  "./static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 print("--------------------------------------------------------")
@@ -139,3 +140,29 @@ print("--------------------------------------------------------")
 print("--------------------------------------------------------")
 print(STATIC_ROOT)
 print(os.path.join(BASE_DIR, 'static/'))
+print(BASE_DIR)
+
+
+
+# Logging configuration
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
+
+logger = logging.getLogger(__name__)
+logger.debug(f"Base Directory: {BASE_DIR}")
+logger.debug(f"Static Files Directory: {STATIC_ROOT}")
