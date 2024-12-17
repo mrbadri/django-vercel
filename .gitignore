@@ -1,0 +1,27 @@
+# Python-related files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+env/
+.venv/
+.env/
+
+# Django-specific files
+db.sqlite3
+db.sqlite3-journal
+*.log
+
+# Secrets and environment variables
+.env
+*.env
+
+# Migrations
+**/migrations/*.pyc
+**/migrations/__pycache__/
+**/migrations/*_initial

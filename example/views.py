@@ -10,8 +10,8 @@ from .serializers import ProductSerializer
 
 class ProductListCreateView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
-    serializer_class = ProductSerializer
-
+    serializer_class = ProductSerializer(queryset, many=True)
+    
 
 
 def index(request):
